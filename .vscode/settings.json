@@ -1,0 +1,13 @@
+{
+  "eslint.run": "onSave",
+  "eslint.workingDirectories": [
+    {
+      "directory": "backend",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "frontend",
+      "changeProcessCWD": true
+    }
+  ]
+}
