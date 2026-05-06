@@ -25,7 +25,7 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
     const product = await ProductModel.create({
       title, description, price, category, image,
     });
-    res.json(product);
+    res.status(201).json(product);
   } catch (error) {
     if (error instanceof MongooseError.ValidationError) {
       next(new BadRequestError('Ошибка валидации данных при создании товара'));
