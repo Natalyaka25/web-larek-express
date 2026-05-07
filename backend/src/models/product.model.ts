@@ -28,7 +28,11 @@ const productSchema = new Schema<IProduct>(
     },
     category: { type: String, required: [true, 'Поле "category" должно быть заполнено'] },
     description: { type: String },
-    price: { type: Number, default: null },
+    price: {
+      type: Number,
+      default: null,
+      min: [0, 'Поле "price" не может быть отрицательным'],
+    },
 
   },
 );

@@ -10,7 +10,7 @@ export const validateCreateProduct = celebrate({
     }).required(),
     category: Joi.string().required(),
     description: Joi.string(),
-    price: Joi.number().allow(null),
+    price: Joi.number().min(0).allow(null),
   }),
 });
 
@@ -20,7 +20,7 @@ export const validateCreateOrder = celebrate({
     email: Joi.string().email().required(),
     phone: Joi.string().required(),
     address: Joi.string().required(),
-    total: Joi.number().required(),
+    total: Joi.number().min(0).required(),
     items: Joi.array().items(Joi.string().required()).min(1).required(),
   }),
 });

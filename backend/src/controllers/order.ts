@@ -4,13 +4,14 @@ import ProductModel from '../models/product.model';
 import BadRequestError from '../errors/bad-request-error';
 import InternalServerError from '../errors/internal-server-error';
 
-export enum PaymentType {
-  Card = 'card',
-  Online = 'online',
-}
+export const PaymentType = {
+  Card: 'card',
+  Online: 'online',
+} as const;
+export type PaymentTypeValue = typeof PaymentType[keyof typeof PaymentType];
 
 export interface IOrderRequest {
-  payment: PaymentType;
+  payment: PaymentTypeValue;
   email: string;
   phone: string;
   address: string;
@@ -23,6 +24,10 @@ const validateProductsForOrder = (
   itemsCount: number,
   total: number,
 ): string | null => {
+  if (total < 0) {
+    return 'Сумма total не может быть отрицательной';
+  }
+
   if (products.length !== itemsCount) {
     return 'Некоторые товары не найдены';
   }

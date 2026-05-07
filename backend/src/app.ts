@@ -9,8 +9,7 @@ import { errorLogger, requestLogger } from './middlewares/logger';
 import errorHandler from './middlewares/error-handler';
 import { DB_ADDRESS, PORT } from './config';
 
-export const app = express();
-export const port = PORT;
+const app = express();
 
 mongoose.connect(DB_ADDRESS);
 
@@ -24,7 +23,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`Server is running on port ${port}. DB: ${DB_ADDRESS}`);
+  console.log(`Server is running on port ${PORT}. DB: ${DB_ADDRESS}`);
 });
